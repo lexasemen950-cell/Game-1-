@@ -1,0 +1,118 @@
+:root{
+  --bg:#0d1f17; --fg:#fff; --hud:rgba(0,0,0,.55);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html,body{
+  height:100%;margin:0;overflow:hidden;
+  background:var(--bg);color:var(--fg);
+  font:14px/1.5 system-ui,sans-serif;
+  -webkit-user-select:none;user-select:none;
+  -webkit-touch-callout:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:none;
+}
+canvas{position:fixed;inset:0;display:block}
+.h{
+  position:fixed;background:var(--hud);
+  padding:6px 12px;border-radius:6px;font-weight:700;
+  pointer-events:none;
+}
+#hp{left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:180px}
+#hb{display:block;height:10px;background:#e33;border-radius:3px;margin-top:4px}
+#am{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));font-size:22px}
+#kl{left:12px;top:calc(12px + env(safe-area-inset-top,0px))}
+#wd{right:12px;top:calc(12px + env(safe-area-inset-top,0px));font-size:13px}
+#mp{right:12px;top:calc(48px + env(safe-area-inset-top,0px));font-size:13px;color:#7fd}
+#loghint{right:12px;top:calc(84px + env(safe-area-inset-top,0px));font-size:12px;color:#ffd060;opacity:.75}
+#cx{
+  position:fixed;left:50%;top:50%;width:18px;height:18px;margin:-9px;
+  border:2px solid #fff9;border-radius:50%;pointer-events:none;
+}
+#dm{
+  position:fixed;inset:0;
+  background:radial-gradient(transparent 40%,#d00);
+  opacity:0;pointer-events:none;
+}
+#ov{
+  position:fixed;inset:0;background:#000b;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;cursor:pointer;padding:20px;z-index:200;
+}
+#ti{font-size:44px;margin:0 0 10px;color:#ffb74d}
+#msg{max-width:640px;font-size:15px;line-height:1.7}
+
+#modeToggle{
+  position:fixed;
+  top:calc(12px + env(safe-area-inset-top,0px));
+  left:50%;transform:translateX(-50%);
+  background:var(--hud);color:#fff;
+  padding:8px 14px;border-radius:8px;
+  font-size:20px;cursor:pointer;z-index:150;
+  user-select:none;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+#mobileControls{display:none}
+body.mobile #mobileControls{display:block}
+body.mobile #loghint{display:none}
+body.mobile #mp{display:none}
+
+.stick{
+  position:fixed;
+  bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  width:150px;height:150px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:2px solid rgba(255,255,255,.2);
+  touch-action:none;z-index:50;
+}
+#moveStick{left:20px}
+#lookStick{right:20px}
+.knob{
+  position:absolute;left:50%;top:50%;
+  width:64px;height:64px;margin:-32px;
+  border-radius:50%;
+  background:rgba(255,255,255,.28);
+  border:2px solid rgba(255,255,255,.55);
+  pointer-events:none;
+  transition:transform .04s linear;
+}
+.tbtn{
+  position:fixed;
+  width:64px;height:64px;
+  border-radius:50%;
+  background:rgba(255,255,255,.14);
+  border:2px solid rgba(255,255,255,.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;color:#fff;
+  touch-action:none;z-index:50;
+  user-select:none;
+}
+.tbtn:active{background:rgba(255,255,255,.35)}
+#fireBtn{right:190px;bottom:calc(140px + env(safe-area-inset-bottom,0px));width:86px;height:86px;font-size:36px;background:rgba(255,80,80,.22);border-color:rgba(255,120,120,.6)}
+#jumpBtn{right:190px;bottom:calc(50px + env(safe-area-inset-bottom,0px))}
+#reloadBtn{right:20px;bottom:calc(190px + env(safe-area-inset-bottom,0px))}
+#runBtn{right:110px;bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+#windBtn{right:20px;bottom:calc(270px + env(safe-area-inset-bottom,0px))}
+
+@media (max-width:480px){
+  #hp{width:130px;font-size:12px}
+  #am{font-size:16px}
+  #kl,#wd{font-size:11px}
+  #ti{font-size:32px}
+  #msg{font-size:13px}
+  .stick{width:130px;height:130px}
+  .knob{width:56px;height:56px;margin:-28px}
+  #fireBtn{right:160px;width:76px;height:76px;font-size:32px}
+  #jumpBtn{right:160px}
+  #reloadBtn{right:14px;bottom:calc(170px + env(safe-area-inset-bottom,0px))}
+  #runBtn{right:96px}
+  #windBtn{right:14px;bottom:calc(240px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-height:500px){
+  #fireBtn{bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+  #windBtn{display:none}
+}
